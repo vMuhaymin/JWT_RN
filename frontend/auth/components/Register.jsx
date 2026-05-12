@@ -1,13 +1,15 @@
 import '../src/Register.css'
 import {Link} from 'react-router-dom'
+
+
 function Register(){
+
     return(<>
     <h1>Register  !!</h1>
+    <Link to="/">  ←  Back </Link>
         <div className="form-register">
+            
             <form action="post">
-
-                
-
 
                 <div className="username"> 
                     <label htmlFor="username">Username</label>
@@ -25,7 +27,7 @@ function Register(){
                     <input type="password" name="confirm-password"  />
                 </div>
 
-                <button className="reg-submit">Register</button>
+                <button className="reg-submit" onClick={()=>{ }}>Register</button>
                 <br />
                 <p>Do you have an account? <Link to="/login">Log in </Link></p>
             
