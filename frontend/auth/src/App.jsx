@@ -6,8 +6,11 @@ function App() {
 
   return (
     <>
-      <h1 className='textt'>Hello</h1>
-     
+    <h1>Greetings!</h1>
+      <div className="header">
+        <button>Register</button>
+        <button>Login</button>
+      </div>
     </>
   )
 }
