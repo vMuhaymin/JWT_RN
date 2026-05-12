@@ -1,12 +1,33 @@
 import '../src/Register.css'
-
+import {Link} from 'react-router-dom'
 function Register(){
     return(<>
     <h1>Register  !!</h1>
         <div className="form-register">
             <form action="post">
-                <label htmlFor="username"> Username </label>
-                <input type="text" name="username"  /> 
+
+                
+
+
+                <div className="username"> 
+                    <label htmlFor="username">Username</label>
+                    <br />
+                    <input type="text" name="username"  />
+                </div>
+
+                <div className="password"> 
+                    <label htmlFor="password">password</label>
+                    <input type="password" name="password"/>
+                </div>
+
+                <div className="password"> 
+                    <label htmlFor="confirm-password">confirm password</label>
+                    <input type="password" name="confirm-password"  />
+                </div>
+
+                <button className="reg-submit">Register</button>
+                <br />
+                <p>Do you have an account? <Link to="/login">Log in </Link></p>
             
             </form>
         </div>

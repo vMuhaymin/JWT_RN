@@ -1,9 +1,29 @@
 .form-register{
-
     display: flex;
     align-self: center;
     
+    
+    border: solid 1px rgb(62, 60, 60) ;
+    border-radius: 10px;
+
     height: 400px;
     width: 300px;
-    background-color: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.form-register .username, .password{
+    width: 100%;
+
+    text-align: left;
+    margin-top: 10px;
+}
+
+.username input, .password input{
+    width: 95%;
+}
+
+.reg-submit{
+    margin-top: 40px;
+    width: 97%;
+    height: 30px;
 }
