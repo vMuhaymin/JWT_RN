@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-    <h1>Greetings!</h1>
+    <h1>Greetings !</h1>
       <div className="header">
         <button> <Link to="/register">Register</Link> </button>
         <button> <Link to="/login">Login</Link> </button>

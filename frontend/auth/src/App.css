@@ -1,8 +1,13 @@
 .header{
-    margin-top: 30vh;
+    margin-top: 5vh;
     align-self: center;
 }
 
 .header button{
     margin: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: aqua;
 }
