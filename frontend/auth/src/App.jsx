@@ -6,6 +6,8 @@ function App() {
 
   return (
     <>
+      <h1 className='textt'>Hello</h1>
+     
     </>
   )
 }
