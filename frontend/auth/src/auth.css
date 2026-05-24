@@ -1,5 +1,6 @@
 .form-register{
     display: flex;
+    flex-direction: column;
     align-self: center;
     
     
@@ -11,11 +12,12 @@
     padding: 20px;
 }
 
-.form-register .username, .password{
+.form-register .username, .password, .auth-page-button{
     width: 100%;
 
     text-align: left;
     margin-top: 10px;
+
 }
 
 .username input, .password input{
@@ -23,7 +25,7 @@
 }
 
 .reg-submit{
-    margin-top: 40px;
+    margin-top: 25px;
     width: 97%;
-    height: 30px;
+    height: 25px;
 }

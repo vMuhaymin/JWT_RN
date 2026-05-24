@@ -1,4 +1,4 @@
-import '../src/Register.css'
+import '../src/auth.css'
 import {Link} from 'react-router-dom'
 
 
@@ -27,7 +27,7 @@ function Register(){
                     <input type="password" name="confirm-password"  />
                 </div>
 
-                <button className="reg-submit" onClick={()=>{ }}>Register</button>
+                <div className="auth-page-button"><button className="reg-submit" onClick={()=>{ }}>Register</button></div>
                 <br />
                 <p>Do you have an account? <Link to="/login">Log in </Link></p>
             
