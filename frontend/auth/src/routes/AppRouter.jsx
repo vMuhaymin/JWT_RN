@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import LandingPage from '../components/LandingPage.jsx'
 import Login from '../components/Login.jsx'
 import Register from '../components/Register.jsx'
+
 
 function AppRouter(){
     return(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<p>HOME PAGE</p>} />
+            <Route path="/" element={<LandingPage/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
 
