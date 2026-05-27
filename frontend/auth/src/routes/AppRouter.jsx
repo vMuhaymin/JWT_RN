@@ -12,8 +12,8 @@ function AppRouter(){
     return(
     <BrowserRouter>
         
-            <PublicRoutes/>
-            {/* <PrivateRoutes/> */}
+            {/* <PublicRoutes/> */}
+            <PrivateRoutes/>
         
     </BrowserRouter>
   )    
