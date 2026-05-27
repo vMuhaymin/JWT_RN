@@ -7,13 +7,18 @@ import { useState } from 'react'
 
 function AppRouter(){
 
-    const [status, setStatus] = useState("checking")
+    const [status, setStatus] = useState("no-authenticated")
 
+    if(status == "checking") return (<p>Loading...</p> ); 
     return(
     <BrowserRouter>
-        
-            {/* <PublicRoutes/> */}
-            <PrivateRoutes/>
+            {
+                status === "authenticated" 
+                ? <PrivateRoutes/> 
+                : <PublicRoutes/>
+
+            }
+
         
     </BrowserRouter>
   )    
