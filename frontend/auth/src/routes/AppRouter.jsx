@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import LandingPage from '../components/LandingPage.jsx'
-import Login from '../components/Login.jsx'
-import Register from '../components/Register.jsx'
+import PrivateRoutes from './PrivateRoutes.jsx'
+import PublicRoutes from './PublicRoutes.jsx'
+
+import { useState } from 'react'
 
 
 function AppRouter(){
+
+    const [status, setStatus] = useState("checking")
+
     return(
     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<LandingPage/>} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/login" element={<Login/>} />
-
-            {/* This redirects unknown URLs to login */}
-            <Route path='*' element={<Navigate to="/login" replace />} />
-        </Routes>
+        
+            <PublicRoutes/>
+            {/* <PrivateRoutes/> */}
+        
     </BrowserRouter>
   )    
 }
