@@ -1,4 +1,4 @@
-import '../src/auth.css'
+import '../auth.css'
 import {Link} from 'react-router-dom'
 
 function Login(){

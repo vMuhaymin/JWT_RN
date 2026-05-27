@@ -1,4 +1,4 @@
-import '../src/auth.css'
+import '../auth.css'
 import {Link} from 'react-router-dom'
 
 
@@ -14,7 +14,7 @@ function Register(){
                 <div className="username"> 
                     <label htmlFor="username">Username</label>
                     <br />
-                    <input type="text" name="username"  />
+                    <input type="text" name="username" placeholder='i.e, Dominator' />
                 </div>
 
                 <div className="password"> 
