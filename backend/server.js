@@ -14,7 +14,6 @@ app.post('/register', (req, res)=>{
     if( !username || !password){
         return res.status(400).json({ok:false, error: "One of the attribute is missing"})
     }
-
     const user = {
         username,
         password
@@ -29,7 +28,7 @@ app.post('/login', (req, res)=>{
     user = tempStorage.forEach((e)=>{
         e.username == userInfo.username && e.password == userInfo.password
     });
-    
+
     if (!user) return res.status(400).json({ok: false, error: "user not found"})
     
     return res.status(200).json({HOLA : "Welcome buddy!"})
