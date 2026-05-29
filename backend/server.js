@@ -21,10 +21,17 @@ app.post('/register', (req, res)=>{
     }
     user.name =req.body.username; user.password =req.body.password;
     tempStorage.append(user)  
-    return res.status(200).json({HOLA : "user registered!"})
+    return res.status(200).json({HOLA : "user has been registered!"})
 });
 
 app.post('/login', (req, res)=>{
+    const userInfo = req.body;
+    user = tempStorage.forEach((e)=>{
+        e.username == userInfo.username && e.password == userInfo.password
+    });
+    
+    if (!user) return res.status(400).json({ok: false, error: "user not found"})
+    
     return res.status(200).json({HOLA : "Welcome buddy!"})
 });
 
