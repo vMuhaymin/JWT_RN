@@ -9,7 +9,7 @@ function Login(){
         password:""
     });
 
-    function handelChange( e ){
+    function handleChange( e ){
         setUserInfo({...userInfo, [e.target.name] : e.target.value})
     }
 
@@ -28,12 +28,12 @@ function Login(){
                 <div className="username"> 
                     <label htmlFor="username">Username</label>
                     <br />
-                    <input type="text" name="username" value={userInfo.username} onChange={handelChange} required />
+                    <input type="text" name="username" value={userInfo.username} onChange={handleChange} required />
                 </div>
 
                 <div className="password"> 
                     <label htmlFor="password">password</label>
-                    <input type="password" name="password" value={userInfo.password} onChange={handelChange} required />
+                    <input type="password" name="password" value={userInfo.password} onChange={handleChange} required />
                 </div>
 
                 
@@ -42,8 +42,6 @@ function Login(){
                 <p>Don't have an account? <Link to="/register">Signup</Link></p>
             
             </form>
-
-            <button onClick={()=>{onSub()}}> meow </button>
         </div>
     </>);
 }
