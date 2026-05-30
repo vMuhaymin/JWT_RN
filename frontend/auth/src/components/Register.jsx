@@ -11,8 +11,30 @@ function Register(){
         confirmPassword: ""
     })
 
+    const [validInfo, setValidInfo]= useState(true);
+    
+
     function handleChange(e){
         setUserInfo({...userInfo, [e.target.name]:e.target.value })
+    }
+    
+    async function registerUser() {
+        if (userInfo.password !== userInfo.confirmPassword ){
+             setValidInfo(false)
+        } else{
+             setValidInfo(true)
+            const URL = "";
+            const respose = await fetch(URL,{
+                method: "POST",
+                body: JSON.stringify(userInfo),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            if (!respose.ok){
+                console.error(`There was an error: ${respose.json()}`)
+            }
+        }
     }
 
     return(<>
@@ -20,7 +42,11 @@ function Register(){
     <Link to="/">  ←  Home </Link>
         <div className="form-register">
             
-            <form action="post">
+            <div >
+
+                {
+                    !validInfo &&  <p> Password Do not Match !</p>
+                }
 
                 <div className="username"> 
                     <label htmlFor="username">Username</label>
@@ -38,11 +64,11 @@ function Register(){
                     <input type="password" name="confirmPassword"  value={userInfo.confirmPassword} onChange={handleChange}  />
                 </div>
 
-                <div className="auth-page-button"><button className="reg-submit" onClick={()=>{ }}>Register</button></div>
+                <div className="auth-page-button"><button className="reg-submit" onClick={()=>{ registerUser()}}>Register</button></div>
                 <br />
                 <p>Do you have an account? <Link to="/login">Log in </Link></p>
             
-            </form>
+            </div>
         </div>
     </>);
 }
