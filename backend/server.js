@@ -5,9 +5,8 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-
-
-const tempStorage = [{username:"Ali",password:2312}]
+//Temporary user storage for debugging
+const tempStorage = [{username : "Ali", password: "123"}]
 
 app.post('/register', (req, res)=>{
     const {username, password} = req.body;
@@ -20,21 +19,23 @@ app.post('/register', (req, res)=>{
         password:0
     }
     user.username = username; user.password = password;
+
     console.log(`The username is: ${username}. And the password is ${password}`)
+    
     tempStorage.push(user)  
     return res.status(200).json({HOLA : "user has been registered!"})
 });
 
 app.post('/login', (req, res)=>{
     const {username, password} = req.body;
-    console.log( `The username is: ${username} | Password is ${password}` );
+    if (!username || !password) {return res.status(400).json({ok: false, error: "user not found"})};
 
-    user = tempStorage.filter((e)=>{
-         e.username == username && e.password == password
+    user = tempStorage.find((u)=>{
+        return u.username === username && u.password === password;
     });
 
-    if (!user) return res.status(400).json({ok: false, error: "user not found"})
-    
+    if (user.length ===0 ) {return res.status(400).json({ok: false, error: "user not found"})};
+
     return res.status(200).json({HOLA : "Welcome buddy!"})
 });
 
