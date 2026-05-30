@@ -14,15 +14,12 @@ app.post('/register', (req, res)=>{
     if( !username || !password){
         return res.status(400).json({ok:false, error: "One of the attribute is missing"})
     }
-    const user = {
-        username:"",
-        password:0
-    }
-    user.username = username; user.password = password;
 
-    console.log(`The username is: ${username}. And the password is ${password}`)
-    
-    tempStorage.push(user)  
+    tempStorage.push({
+        username:username,
+        password:password
+    });
+
     return res.status(200).json({HOLA : "user has been registered!"})
 });
 
@@ -34,8 +31,7 @@ app.post('/login', (req, res)=>{
         return u.username === username && u.password === password;
     });
 
-    if (user.length ===0 ) {return res.status(400).json({ok: false, error: "user not found"})};
-
+    if (!user) {return res.status(400).json({ok: false, error: "user not found"})};
     return res.status(200).json({HOLA : "Welcome buddy!"})
 });
 
