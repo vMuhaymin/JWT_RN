@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import '../auth.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 function Register(){
-
+    let navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({
         username:"",
         password:"",
@@ -14,8 +14,6 @@ function Register(){
     const [validInfo, setValidInfo]= useState(true);
     const [load, setLoad]= useState(false);
 
-    
-
     function handleChange(e){
         setUserInfo({...userInfo, [e.target.name]:e.target.value })
     }
@@ -23,6 +21,7 @@ function Register(){
     async function registerUser() {
         if (userInfo.password !== userInfo.confirmPassword ){
              setValidInfo(false)
+             return;
         } else{
             setLoad(true);
             setValidInfo(true)
@@ -36,10 +35,13 @@ function Register(){
 
             });
             if (!respose.ok){
-                console.error(`There was an error: ${respose.json()}`)
+              return  console.error(`There was an error: ${respose.json()}`)
             }
+            navigate('/login');
         }
+        
         setLoad(false);
+        
     }
 
     return(<>
@@ -72,7 +74,7 @@ function Register(){
                     <input type="password" name="confirmPassword"  value={userInfo.confirmPassword} onChange={handleChange}  />
                 </div>
 
-                <div className="auth-page-button"><button className="reg-submit" onClick={()=>{ registerUser()}}>Register</button></div>
+                <div className="auth-page-button"><button className="reg-submit" onClick={()=>{ registerUser();}}>Register</button></div>
                 <br />
                 <p>Do you have an account? <Link to="/login">Log in </Link></p>
             
