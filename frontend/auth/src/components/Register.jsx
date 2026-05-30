@@ -12,6 +12,8 @@ function Register(){
     })
 
     const [validInfo, setValidInfo]= useState(true);
+    const [load, setLoad]= useState(false);
+
     
 
     function handleChange(e){
@@ -22,19 +24,22 @@ function Register(){
         if (userInfo.password !== userInfo.confirmPassword ){
              setValidInfo(false)
         } else{
-             setValidInfo(true)
-            const URL = "";
+            setLoad(true);
+            setValidInfo(true)
+            const URL = "http://localhost:3000/register";
             const respose = await fetch(URL,{
                 method: "POST",
-                body: JSON.stringify(userInfo),
                 headers: {
                     "Content-Type": "application/json",
-                }
+                },
+                body: JSON.stringify(userInfo)
+
             });
             if (!respose.ok){
                 console.error(`There was an error: ${respose.json()}`)
             }
         }
+        setLoad(false);
     }
 
     return(<>
@@ -46,6 +51,9 @@ function Register(){
 
                 {
                     !validInfo &&  <p> Password Do not Match !</p>
+                }
+                {
+                    load  &&  <p> loading...</p>
                 }
 
                 <div className="username"> 
