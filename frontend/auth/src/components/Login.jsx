@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../auth.css'
 import {Link} from 'react-router-dom'
+import { useEffect } from 'react';
 
 function Login(){
 
@@ -13,9 +14,24 @@ function Login(){
         setUserInfo({...userInfo, [e.target.name] : e.target.value})
     }
 
-    function onSub(){
-        console.log(`Username is: ${userInfo.username} | Password is ${userInfo.password}`)
-    }
+    async function checkUser() {
+    
+        const URL="http://localhost:3000/login";
+        const response = await fetch(URL,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo)
+        })
+        if( !response.ok){
+            console.error(`Couldnt send due to: ${response.json()}`)
+        }
+        else{
+            console.log(`username is ${userInfo.username} and password is ${userInfo.password} \n respose is ${response.ok}`)
+        }
+  }
+
 
 
     return(<>
@@ -23,8 +39,7 @@ function Login(){
     <Link to="/">  ←  Home </Link>
         <div className="form-register">
             
-            <form action="">
-
+            <div>
                 <div className="username"> 
                     <label htmlFor="username">Username</label>
                     <br />
@@ -37,11 +52,11 @@ function Login(){
                 </div>
 
                 
-                <div className="auth-page-button"><button className="reg-submit">Register</button></div>
+                <div className="auth-page-button"><button className="reg-submit" onClick={()=> checkUser()} >Login</button></div>
                 <br />
                 <p>Don't have an account? <Link to="/register">Signup</Link></p>
             
-            </form>
+            </div>
         </div>
     </>);
 }
