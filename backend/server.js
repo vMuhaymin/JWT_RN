@@ -20,7 +20,8 @@ app.post('/register', (req, res)=>{
         password:0
     }
     user.username = username; user.password = password;
-    tempStorage.append(user)  
+    console.log(`The username is: ${username}. And the password is ${password}`)
+    tempStorage.push(user)  
     return res.status(200).json({HOLA : "user has been registered!"})
 });
 
