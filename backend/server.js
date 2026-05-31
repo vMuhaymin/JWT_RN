@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended: true}));
 
 //Temporary user storage for debugging
 const tempStorage = [{username : "Ali", password: "123"}]
-
+let auth = ""; 
 app.post('/register', (req, res)=>{
     const {username, password} = req.body;
 
@@ -33,10 +33,24 @@ app.post('/login', (req, res)=>{
         return u.username === username && u.password === password;
     });
 
-    if (!user) {return res.status(400).json({ok: false, error: "user not found"})};
-    return res.status(200).json({HOLA : "Welcome buddy!"})
+    if (!user) {
+        auth = "no-authenticated"; 
+        return res.status(400).json({ok: false, error: "user not found"})
+    };
+
+    auth = "authenticated"; 
+    return res.status(200).json({HOLA : "Welcome buddy!",})
+
 });
 
+app.get('/checkAuth', (req, res)=>{
+   
+
+    if (auth === "authenticated"  ) {
+        return  res.status(200).json({auth : "authenticated" })  
+    }
+    return res.status(400).json({ok: false, auth : "no-authenticated"})
+});
 
 const PORT = 3000;
 app.listen(PORT, ()=>{

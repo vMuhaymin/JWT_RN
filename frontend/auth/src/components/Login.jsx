@@ -28,11 +28,9 @@ function Login(){
             console.error(`Couldnt send due to: ${response.json()}`)
         }
         else{
-            console.log(`username is ${userInfo.username} and password is ${userInfo.password} \n respose is ${response.ok}`)
+            console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${response.ok}`)
         }
   }
-
-
 
     return(<>
     <h1>Log in  !!</h1>
