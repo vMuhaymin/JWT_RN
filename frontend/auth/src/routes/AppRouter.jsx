@@ -6,18 +6,18 @@ import { useEffect, useState } from 'react'
 
 
 function AppRouter(){
-    // Either no-authenticated, authenticated, or checking
+    // Either no-authenticated, authenticated
     const [status, setStatus] = useState("no-authenticated")
     
     useEffect(()=>{
       const URL = "http://localhost:3000/checkAuth";
       fetch(URL,{})
       .then(res => res.json())
-      .then(res=>{ console.log(`The data is ${res.auth}`);  setStatus(res.auth)})
+      .then(res=>{ setStatus(res.auth)})
       .catch(err => console.log(err))
+      
     },[])
 
-    if(status == "checking") return (<p>Loading...</p> ); 
     return(
     <BrowserRouter>
             {
