@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../auth.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useEffect } from 'react';
 
 function Login(){
@@ -11,6 +11,8 @@ function Login(){
         username:"",
         password:""
     });
+
+    const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,13 +32,16 @@ function Login(){
         if( !response.ok){
             console.error(`Couldnt send due to: ${response.json()}`)
             setIsLoading(false)
+            
         }
         else{
-
-            setIsLoading(false)
-            window.location.reload();
             console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${response.ok}`)
+            setTimeout(()=>{ {/* REMOVE THIS TIME OUT, Just leave window.location.reload()*/}
+                setIsLoading(false)
+                window.location.reload();
+            },100)
         }
+       
   }
 
     return(<>
@@ -60,19 +65,7 @@ function Login(){
                 </div>
 
                 
-                <div className="auth-page-button"><button
-  className="reg-submit"
-  onClick={() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      console.log("Delayed!");
-      checkUser();
-    }, 4000);
-  }}
->
-  Login
-</button></div>
+                <div className="auth-page-button"><button className="reg-submit" onClick={()=>{setIsLoading(true); checkUser()}} >Login</button></div>
                 <br />
                 <p>Don't have an account? <Link to="/register">Signup</Link></p>
             
