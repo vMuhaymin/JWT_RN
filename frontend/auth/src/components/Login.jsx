@@ -44,7 +44,6 @@ function Login(){
                 window.location.reload();
             },200)
         }
-       
   }
 
     return(<>
