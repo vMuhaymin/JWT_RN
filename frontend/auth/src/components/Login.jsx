@@ -35,10 +35,10 @@ function Login(){
             
         }
         else{
-            console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${response.ok}`)
+            console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${response.ok}\n `)
             setTimeout(()=>{ {/* REMOVE THIS TIME OUT, Just leave window.location.reload()*/}
                 setIsLoading(false)
-                window.location.reload();
+               // window.location.reload();
             },100)
         }
        

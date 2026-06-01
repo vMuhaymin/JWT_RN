@@ -1,5 +1,8 @@
 const express = require("express");
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const secret = "secret123"
+
 const app = express()
 
 app.use(cors())
@@ -8,6 +11,8 @@ app.use(express.urlencoded({extended: true}));
 
 //Temporary user storage for debugging
 const tempStorage = [{username : "Ali", password: "123"}]
+
+let sesTkn = ""
 let auth = ""; 
 app.post('/register', (req, res)=>{
     const {username, password} = req.body;
@@ -37,19 +42,33 @@ app.post('/login', (req, res)=>{
         auth = "no-authenticated"; 
         return res.status(400).json({ok: false, error: "user not found"})
     };
+    const token = jwt.sign( user.userId , secret, {
+        expiresIn: '1m'
+    } );
 
     auth = "authenticated"; 
-    return res.status(200).json({HOLA : "Welcome buddy!",})
+    sesTkn= token;
+    console.log(token)
+    return res.status(200).json({ token })
 
 });
 
-app.get('/checkAuth', (req, res)=>{
-   
-
-    if (auth === "authenticated"  ) {
-        return  res.status(200).json({auth : "authenticated" })  
+const verifyToken= (req, res, next)=>{
+    const token = req.header('Authorization');
+    if(!token) return res.status(401).json({ok: false, error: "Access is denied"});
+    try{
+        const decode = jwt.verify(token ,secret);
+        next();
+    } catch{
+        return res.status(400).json({ error: 'Invalid token' });
     }
-    return res.status(400).json({ok: false, auth : "no-authenticated"})
+
+}
+
+app.get('/checkAuth' , verifyToken ,(req, res)=>{
+    return  res.status(200).json({
+        ok: true,
+        auth: "authenticated"})  
 });
 
 const PORT = 3000;
