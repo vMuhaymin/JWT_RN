@@ -39,10 +39,10 @@ function Login(){
             sessionStorage.setItem("token" , res.token)
             console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${res.ok}\n token ${res.token} `)
            
-            // setTimeout(()=>{ {/* REMOVE THIS TIME OUT, Just leave window.location.reload()*/}
-            //     setIsLoading(false)
-            //     //window.location.reload();
-            // },100)
+            setTimeout(()=>{ {/* REMOVE THIS TIME OUT, Just leave window.location.reload()*/}
+                setIsLoading(false)
+                window.location.reload();
+            },200)
         }
        
   }

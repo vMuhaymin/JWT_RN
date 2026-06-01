@@ -27,7 +27,6 @@ app.post('/register', (req, res)=>{
     return res.status(200).json({HOLA : "user has been registered!"})
 });
 
-
 app.post('/login', (req, res)=>{
     const {username, password} = req.body;
     if (!username || !password) {return res.status(400).json({ok: false, error: "user not found"})};
