@@ -35,11 +35,14 @@ function Login(){
             
         }
         else{
-            console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${response.ok}\n `)
-            setTimeout(()=>{ {/* REMOVE THIS TIME OUT, Just leave window.location.reload()*/}
-                setIsLoading(false)
-               // window.location.reload();
-            },100)
+            const res = await response.json();
+            sessionStorage.setItem("token" , res.token)
+            console.log(`username is ${userInfo.username} and password is ${userInfo.password}\nrespose is ${res.ok}\n token ${res.token} `)
+           
+            // setTimeout(()=>{ {/* REMOVE THIS TIME OUT, Just leave window.location.reload()*/}
+            //     setIsLoading(false)
+            //     //window.location.reload();
+            // },100)
         }
        
   }

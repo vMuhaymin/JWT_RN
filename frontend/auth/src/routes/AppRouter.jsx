@@ -11,19 +11,20 @@ function AppRouter(){
 
     // Either no-authenticated, authenticated
     const [status, setStatus] = useState("no-authenticated");
-    const [tk, settk] = useState({});
-
     useEffect(()=>{
       
       const URL = "http://localhost:3000/checkAuth";
-      fetch(URL,{})
+      fetch(URL,{
+        headers: {"authorization": sessionStorage.getItem("token")
+        }
+      })
       .then(res => res.json())
-      .then(res=>{ setStatus(res.auth); settk(res.token)})
+      .then(res=>{ setStatus(res.auth);})
       .catch(err => console.log(err))
        
 
     },[])
-  console.log(tk); 
+ 
     return(
     <BrowserRouter>
   
